@@ -38,6 +38,8 @@ letters_dict = {
     "i" : "\\TTdot",
     "o" : "\\TTrightcurl",
     "u" : "\\TTleftcurl"
+    "|" : "\\Ttelco",
+    "°" : "\\Taara"
 }
 
 def transcriber(word):
@@ -46,7 +48,7 @@ def transcriber(word):
     """
     word = word.lower()
     transcribed = ""
-    
+
     if cluster_checker(word) == True:
         word = cluster_converter(word)
 

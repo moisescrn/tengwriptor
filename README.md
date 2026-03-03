@@ -1,3 +1,4 @@
+# Tengwriptor - a tengwar transcriber with LaTeX
 Tengwriptor is a transcriber from the Latin alphabet to Tengwar, the Elvish letters designed by J.R.R. Tolkien. At the moment the only supported language is Quenya, but in the future more languages like Sindarin, Spanish and English will be implemented.
 
 # Prerequisites

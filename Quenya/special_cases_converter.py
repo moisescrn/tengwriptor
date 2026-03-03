@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 #
 # QUENYA
-# 
+#
 # This file contains functions that convert the clusters into other (unique) characters to make the final conversion better
 
 consonant_clusters = {"qu", "nd", "mb", "ng", "ngw", "hw", "nt", "mp", "nc", "nqu", "nw", "rd", "ld", "ss", "hl", "hr"}
