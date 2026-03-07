@@ -15,7 +15,7 @@
 #           True: if there are spacial cases
 #           Flase: else
 
-consonant_clusters = {"qu", "nd", "mb", "ng", "ngw", "hw", "nt", "mp", "nc", "nqu", "nw", "rd", "ld", "ss", "hl", "hr"}
+consonant_clusters = {"qu", "nd", "mb", "ng", "ngw", "hw", "nt", "mp", "nc", "nqu", "nw", "rd", "ld", "ss", "hl", "hr", "hy", "rr", "mm", "nn", "tt", "cc", "pp", "ll", "my", "ny", "ry", "ly", "ty", "py", "cy"}
 diphtongs = {"ai", "oi", "ui", "iu", "eu", "au"}
 single_consonants = {"h", "s", "y"}
 vowels = {"a", "e", "i", "o", "u", "á", "é", "í", "ó", "ú"}

@@ -9,17 +9,35 @@
 
 from special_cases_converter import cluster_converter
 from special_cases_checker import checker as cluster_checker
+from vowel_preparation import vowel_preparation
 
 letters_dict = {
+    "t" : "\\Ttinco",
+    "p" : "\\Tparma",
+    "c" : "\\Tcalma",
+    "k" : "\\Tcalma",
+    "f" : "\\Tformen",
+    "n" : "\\Tnuumen",
+    "m" : "\\Tmalta",
+    "r" : "\\Troomen",
+    "v" : "\\Tvala",
+    "y" : "\\Tanna\\TTtwodotsbelow",
+    "l" : "\\Tlambe",
+    "s" : "\\Tsilme",
+    "ś" : "\\Tsilmenuquerna",
+    "x" : "\\Tquesse\\Tlefthook",
+    "h" : "\\Taha",
+    "H" : "\\Thyarmen\\TTtwodotsbelow",
+    "R" : "\\Troomen\\Tdoubler",
     "Q" : "\\Tquesse",
     "d" : "\\Tando",
     "b" : "\\Tumbar",
     "g" : "\\Tanga",
     "G" : "\\Tungwe",
     "<" : "\\Thwesta",
-    "T" : "\\Tanto",
-    "P" : "\\Tampa",
-    "C" : "\\Tanca",
+    "ń" : "\\Tanto",
+    "ṕ" : "\\Tampa",
+    "ć" : "\\Tanca",
     "%" : "\\Tunque",
     "W" : "\\Tnwalme",
     "&" : "\\Tarda",
@@ -27,6 +45,19 @@ letters_dict = {
     "S" : "\\Tessenuquerna",
     "=" : "\\Thalla\\Tlambe",
     ">" : "\\Thalla\\Troomen",
+    "M" : "\\Tmalta\\Tdoubler",
+    "N" : "\\Tnuumen\\Tdoubler",
+    "T" : "\\Ttinco\\Tdoubler",
+    "C" : "\\Tcalma\\Tdoubler",
+    "P" : "\\Tparma\\Tdoubler",
+    "L" : "\\Tlambde\\Tdoubler",
+    "m̀" : "\\Tmalta\\Ttwodotsbelow",
+    "ǹ" : "\\Tnuumen\\Ttwodotsbelow",
+    "ŕ" : "\\Troomen\\Ttwodotsbelow",
+    "ĺ" : "\\Tlambe\\Ttwodotsbelow",
+    "ÿ" : "\\Tcalma\\Ttwodotsbelow",
+    "ý" : "\\Tparma\\Ttwodotsbelow",
+    "ẅ" : "\\Tcalma\\Ttwodotsbelow",
     "Á" : "\\Tyanta\\TTthreedots",
     "Ó" : "\\Tyanta\\TTrightcurl",
     "Ú" : "\\Tyanta\\TTleftcurl",
@@ -37,9 +68,9 @@ letters_dict = {
     "e" : "\\TTacute",
     "i" : "\\TTdot",
     "o" : "\\TTrightcurl",
-    "u" : "\\TTleftcurl"
+    "u" : "\\TTleftcurl",
     "|" : "\\Ttelco",
-    "°" : "\\Taara"
+    "^" : "\\Taara"
 }
 
 def transcriber(word):
@@ -51,6 +82,8 @@ def transcriber(word):
 
     if cluster_checker(word) == True:
         word = cluster_converter(word)
+
+    word = vowel_preparation(word)
 
     for char in word:
         transcribed += letters_dict[char]
