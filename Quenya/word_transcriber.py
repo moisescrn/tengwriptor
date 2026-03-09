@@ -10,6 +10,7 @@
 from special_cases_converter import cluster_converter
 from special_cases_checker import checker as cluster_checker
 from vowel_preparation import vowel_preparation
+from h_s_r_converter import hsr_converter
 
 letters_dict = {
     "t" : "\\Ttinco",
@@ -20,13 +21,16 @@ letters_dict = {
     "n" : "\\Tnuumen",
     "m" : "\\Tmalta",
     "r" : "\\Troomen",
+    "@" : "\\Toore",
     "v" : "\\Tvala",
+    "w" : "\\Tvilya",
     "y" : "\\Tanna\\TTtwodotsbelow",
     "l" : "\\Tlambe",
     "s" : "\\Tsilme",
     "ś" : "\\Tsilmenuquerna",
     "x" : "\\Tquesse\\Tlefthook",
     "h" : "\\Taha",
+    "j" : "\\Thyarmen", # at beginning of word
     "H" : "\\Thyarmen\\TTtwodotsbelow",
     "R" : "\\Troomen\\Tdoubler",
     "Q" : "\\Tquesse",
@@ -42,7 +46,8 @@ letters_dict = {
     "W" : "\\Tnwalme",
     "&" : "\\Tarda",
     "€" : "\\Talda",
-    "S" : "\\Tessenuquerna",
+    "S" : "\\Tesse",
+    "Ś" : "\\Tessenuquerna",
     "=" : "\\Thalla\\Tlambe",
     ">" : "\\Thalla\\Troomen",
     "M" : "\\Tmalta\\Tdoubler",
@@ -69,11 +74,15 @@ letters_dict = {
     "i" : "\\TTdot",
     "o" : "\\TTrightcurl",
     "u" : "\\TTleftcurl",
+    "é" : "\\TTdoubleaccute",
+    "ó" : "\\TTdoublerightcurl",
+    "ú" : "\\TTdoubleleftcurl",
     "|" : "\\Ttelco",
-    "^" : "\\Taara"
+    "^" : "\\Taara",
+    "~" : "\\Trighthook"
 }
 
-def transcriber(word):
+def word_transcriber(word):
     """
     Converts the original word to the tengwarscript commands
     """
@@ -85,6 +94,8 @@ def transcriber(word):
 
     word = vowel_preparation(word)
 
+    word = hsr_converter(word)
+
     for char in word:
         transcribed += letters_dict[char]
 
@@ -93,5 +104,5 @@ def transcriber(word):
 
 if __name__ == "__main__":
     word = input("write a word ")
-    new = transcriber(word)
+    new = word_transcriber(word)
     print(new)
