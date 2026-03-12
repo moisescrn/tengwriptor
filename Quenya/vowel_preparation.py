@@ -7,21 +7,7 @@
 # the diphtongs are seen as clusters and therefore are not treated here,
 # but in special_case_converter.py
 
-non_accent = {"a", "e", "i", "o", "u"}
-accent = {"á", "é", "í", "ó", "ú"}
-diphtongs = {"ai", "oi", "ui", "iu", "eu", "au"}
-doubled_acc_vowels = {"é", "ó", "ú"}
-
-vowels = non_accent | accent
-
-# Map accented vowels to unaccented, needed to add the aara
-normalize = {
-    "á" : "a",
-    "é" : "e",
-    "í" : "i",
-    "ó" : "ó",
-    "ú" : "u"
-}
+from .letters import diphtongs, vowels, accent, non_accent, doubled_acc_vowels, normalize
 
 def manipulation_checker(word, vowel, position):
     """

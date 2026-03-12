@@ -15,6 +15,7 @@ On the net there are a lot of guides and websites to write with Tengwar, but wha
 
 <u>Accepted languages:</u> 
 - Quenya
+
 *In the future*
 - Sindarin (Beleriand and full mode)
 - Spanish

@@ -4,14 +4,7 @@
 #
 # This file contains functions that convert the letters h, s and r
 
-non_accent = {"a", "e", "i", "o", "u"}
-accent = {"á", "é", "í", "ó", "ú"}
-#diphtongs = {"ai", "oi", "ui", "iu", "eu", "au"}
-doubled_acc_vowels = {"é", "ó", "ú"}
-
-vowels = non_accent | accent
- # vowels where silme and esse have to be transfromed
-nuquerna_vowels = non_accent | doubled_acc_vowels
+from .letters import vowels, nuquerna_vowels
 
 def hsr_converter(word):
     """
@@ -39,7 +32,7 @@ def hsr_converter(word):
                 word = word[:-1] + "@"
 
             # before consonants
-            elif word[i+1] not in vowels:
+            elif word[i+1] not in vowels|{"|","^"}:
                 word = word[:i] + "@" + word[i+1:]
 
     # convert s and ss

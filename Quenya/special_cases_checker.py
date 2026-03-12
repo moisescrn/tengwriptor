@@ -7,20 +7,8 @@
 #                        2. Consonant clusters
 #                        3. Some single consonants (h, s, y)
 #                        3. Vowels (check if telco is necessary or not)
-#
-# --------------Elimina:----------------------
-# INPUT:
-#           string consisting of a single word
-# OUTPUT:
-#           True: if there are spacial cases
-#           Flase: else
 
-consonant_clusters = {"qu", "nd", "mb", "ng", "ngw", "hw", "nt", "mp", "nc", "nqu", "nw", "rd", "ld", "ss", "hl", "hr", "hy", "rr", "mm", "nn", "tt", "cc", "pp", "ll", "my", "ny", "ry", "ly", "ty", "py", "cy"}
-diphtongs = {"ai", "oi", "ui", "iu", "eu", "au"}
-single_consonants = {"h", "s", "y"}
-vowels = {"a", "e", "i", "o", "u", "á", "é", "í", "ó", "ú"}
-
-clusters = consonant_clusters | diphtongs # union of sets
+from .letters import single_consonants, clusters
 
 def single_checker(word):
     """
