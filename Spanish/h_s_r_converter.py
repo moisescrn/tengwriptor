@@ -4,7 +4,7 @@
 #
 # This file contains functions that convert the letters h, s and r
 
-from .letters import vowels, nuquerna_vowels
+from letters import vowels, nuquerna_vowels
 
 def hsr_converter(word):
     """
