@@ -3,7 +3,8 @@
 # Takes a file as input and generates a .tex file that can be compiled to give the transcribed version
 
 import getopt, sys, os
-from Quenya import word_transcriber
+from Quenya import word_transcriber as quenya_transcriber
+from Spanish import word_transcriber as spanish_transcriber
 from Splitter import words_splitter
 import Argument_functions
 

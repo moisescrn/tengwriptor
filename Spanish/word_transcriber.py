@@ -1,17 +1,17 @@
 #!/usr/bin/venv python3
 #
-# QUENYA
+# ESPAÑOL
 #
 # INPUT:
 #       string (single word)
 # OUTPUT:
 #       string (transcribed to tengwarscript)
 
-from special_cases_converter import cluster_converter
-from special_cases_checker import checker as cluster_checker
-from vowel_preparation import vowel_preparation
-from h_s_r_converter import hsr_converter, cg_converter
-from letters import letters_dict
+from .special_cases_converter import cluster_converter
+from .special_cases_checker import checker as cluster_checker
+from .vowel_preparation import vowel_preparation
+from .h_s_r_c_g_converter import hs_converter, cgr_converter
+from .letters import letters_dict
 
 def word_transcriber(word):
     """
@@ -20,14 +20,16 @@ def word_transcriber(word):
     word = word.lower()
     transcribed = ""
 
-    word = cg_converter(word)
+    word = cgr_converter(word)
 
     if cluster_checker(word) == True:
         word = cluster_converter(word)
 
-    word = vowel_preparation(word)
+#    word = vowel_preparation(word)
 
-    word = hsr_converter(word)
+    word = hs_converter(word)
+
+    word = vowel_preparation(word)
 
     for char in word:
         transcribed += letters_dict[char]

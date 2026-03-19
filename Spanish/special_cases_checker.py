@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# QUENYA
+# ESPAÑOL
 #
 # This file is responsible has the necessary functions to check if there are some special cases that require some manipulation.
 # The special cases are: 1. Diphtongs
@@ -8,7 +8,7 @@
 #                        3. Some single consonants (h, s, y)
 #                        3. Vowels (check if telco is necessary or not)
 
-from letters import single_consonants, clusters
+from .letters import single_consonants, clusters
 
 def single_checker(word):
     """

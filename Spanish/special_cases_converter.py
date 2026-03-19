@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 #
-# QUENYA
+# ESPAÑOL
 #
 # This file contains functions that convert the clusters into other (unique) characters to make the final conversion better
 
-from letters import clusters, cluster_dict
+from .letters import clusters, cluster_dict
 
 def cluster_converter(word):
     """

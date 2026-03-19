@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 #
-# QUENYA
+# ESPAÑOL
 #
 # This file checks if a vowel needs telco, aara or nothing,
 # if needed | or ^ are introduced into the word
 # the diphtongs are seen as clusters and therefore are not treated here,
 # but in special_case_converter.py
 
-from letters import diphtongs, vowels, accent, non_accent, doubled_acc_vowels, normalize
+from .letters import diphtongs, vowels, accent, non_accent, doubled_acc_vowels, normalize
 
 def manipulation_checker(word, vowel, position):
     """

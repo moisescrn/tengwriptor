@@ -2,7 +2,7 @@
 # 
 # ESPAÑOL
 #
-# This file defines all different sets of variables that are used within the language of Quenya
+# This file defines all different sets of variables that are used within the language of Spanish
 # From vowels to consonants and clusters, and conversion dictionaries
 
 
@@ -28,9 +28,9 @@ normalize = {
 
 # ------- Clusters -------
 
-consonant_clusters = {"qu", "nd", "mb", "nǵ", "nt", "mp", "nk", "nz", "rd", "ld", "rr", "tt", "kz", "mm", "nn", "pp", "ll", "ch"}
+consonant_clusters = {"qu", "nd", "mb", "nǵ", "nt", "mp", "nk", "nz", "rd", "ld", "rr", "tt", "kz", "mm", "nn", "pp", "ll", "kh"}
 # Strange things: the cg converter will be applied before the clusters are revised
-# Therefore we  have kz instead of cc, or nǵ instead of ng. Note that nj is no cluster
+# Therefore we  have kz instead of cc, kh instead of kh, or nǵ instead of ng. Note that nj is no cluster
 diphtongs = {"ai", "ei", "oi", "ui", "iu", "eu", "au", "ou", "ia", "ie", "io", "ua", "ue", "uo"} # Transcription of additional diphtongs inspired by https://www.omniglot.com/conscripts/tengwares.php
 
 clusters = consonant_clusters | diphtongs
@@ -55,7 +55,7 @@ cluster_dict = {
     "kz" : "C",
     "pp" : "P",
     "ll" : "L",
-    "ch" : "H",
+    "kh" : "H",
     "ai" : "Á",
     "ei" : "É",
     "oi" : "Ó",
@@ -75,14 +75,17 @@ cluster_dict = {
 # ------- LETTERS CONVERSION -------
 letters_dict = {
     "t" : "\\Ttinco",
+    "d" : "\\Tando",
     "p" : "\\Tparma",
+    "b" : "\\Tumbar",
+    "z" : "\\Tthuule",
     "k" : "\\Tcalma",
     "ǵ" : "\\Tanga",
     "f" : "\\Tformen",
     "n" : "\\Tnuumen",
     "m" : "\\Tmalta",
-    "r" : "\\Troomen",
-    "@" : "\\Toore",
+    "ñ" : "\\Tnoldo"
+    "r" : "\\Toore",
     "v" : "\\Tvala",
     "w" : "\\Tvilya",
     "y" : "\\Tanna\\TTtwodotsbelow",
@@ -91,8 +94,8 @@ letters_dict = {
     "ś" : "\\Tsilmenuquerna",
     "x" : "\\Tquesse\\Tlefthook",
     "h" : "\\Taha",
-    "j" : "\\Thyarmen", # at beginning of word
-    "R" : "\\Troomen\\TTdoubler",
+    "j" : "\\Thyarmen",
+    "R" : "\\Troomen",
     "Q" : "\\Tquesse",
     "D" : "\\Tando\\TTnasalizer",
     "B" : "\\Tumbar\\TTnasalizer",

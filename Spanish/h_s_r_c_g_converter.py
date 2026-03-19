@@ -1,59 +1,54 @@
 #!/usr/bin/venv python3
 # 
-# QUENYA
+# ESPAÑOL
 #
-# This file contains functions that convert the letters h, s and r
+# This file contains functions that convert the letters h, s, r, c and g
 
-from letters import vowels, nuquerna_vowels
+from .letters import vowels, nuquerna_vowels, accent, normalize
 
-def hsr_converter(word):
+def hs_converter(word):
     """
     Handles with the special cases of h, s and r
-    At beginning of word: h -> j
+    Eliminate h
     At end of word: s -> ~
-    Before consonants: r -> @
-    Before vowels: s -> ś, ss -> Ś, at this point ss will be S!!
+    Before vowels: s -> ś
     """
-    # convert h
-    if word[0] == "h":
-        if word[1] != "y" and word[1] != "r" and word[1] != "l":
-            word = "j" + word[1:]
-
+    # handle the h
+    # the only h that matters is in ch, which will be converted before this function
+    # but we have to consider the case, where we have an h between two vowels
+    for i in range(1,len(word)-1):
+        if word[i] == "h" and word[i-1] in vowels and word[i+1] in vowels:
+            if word[i+1] in accent:
+                word = word[:i] + "^" + normalize[word[i+1:]]
+            else:
+                word = word[:i] + "|" + word[i+1:]
+    # in the other cases just eliminate the h
+    word = word.replace("h","")
+    
     # convert final s
     if word[-1] == "s":
         word = word[:-1] + "~"
 
-    # convert r
-    for i in range(len(word)):
-        if word[i] == "r":
-            # at the end of the word
-            if i == len(word)-1:
-                word = word[:-1] + "@"
-
-            # before consonants
-            elif word[i+1] not in vowels|{"|","^"}:
-                word = word[:i] + "@" + word[i+1:]
-
-    # convert s and ss
+    # convert s
     # we dont need to consider diphtongs because this function will be called after the vowels are property transformed
-    # at this point ss is writen as S
     for i in range(len(word)):
         if word[i] == "s" and word[i+1] in nuquerna_vowels:
             word = word[:i] + "ś" + word[i+1:]
-            
-        if word[i] == "S" and word[i+1] in nuquerna_vowels:
-            word = word[:i] + "Ś" + word[i+1:]
 
     return word
 
-def cg_converter(word):
+def cgr_converter(word):
     """
     Prepares c and g depending on the pronounciation
     c -> k
     c -> z (before e, i)
     g -> ǵ
     g -> j (before e, i)
+    It also changes an initian r to R, so that we get a roomen
     """
+    # Checking the r
+    if word[0] == "r":
+        word = "R" + word[1:]
     # Begin handling with the special case of ending with g or c
     if word[-1] == "c":
         word = word[:-1] + "k"
