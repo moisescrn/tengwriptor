@@ -3,10 +3,15 @@
 # Takes a file as input and generates a .tex file that can be compiled to give the transcribed version
 
 import getopt, sys, os
-from Quenya import word_transcriber as quenya_transcriber
-from Spanish import word_transcriber as spanish_transcriber
+from Quenya.word_transcriber import word_transcriber as quenya_transcriber
+from Spanish.word_transcriber import word_transcriber as spanish_transcriber
 from Splitter import words_splitter
 import Argument_functions
+
+transcriber_mappings = {
+    "quenya" : quenya_transcriber,
+    "spanish" : spanish_transcriber
+}
 
 # ---- Setting arguments ----
 #   -h ... help
@@ -22,6 +27,7 @@ long_options = {"help", "compile", "font", "outputFile", "language"}
 comp_chiv = 0
 font_chiv = 0
 output_chiv = 0
+lang_chiv = 0
 
 try:
     arguments, values = getopt.getopt(sys.argv[1:], options, long_options)
@@ -38,7 +44,8 @@ try:
             new_file = Argument_functions.set_outputfile(currentVal)
             output_chiv += 1
         elif currentArg in {"-l", "--language"}:
-            Argument_functions.set_language(currentVal)
+            transcr = transcriber_mappings[Argument_functions.set_language(currentVal)]
+            lang_chiv += 1
 except getopt.GetoptError as err:
     print(str(err))
     print("\nPrinting usage instructions:")
@@ -55,9 +62,8 @@ if output_chiv == 0:
         new_file = text_to_transcribe[:-4] + ".tex"
     else:
         new_file = text_to_transcribe + ".tex"
-# fot the future
-#if lang_chiv == 0:
-#    language = "quenya"
+if lang_chiv == 0:
+    transcr = quenya_transcriber
 
 # ---- Reading and splitting text ----
 splitted_text = words_splitter.splitter(text_to_transcribe)
@@ -69,7 +75,7 @@ file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\
 paragraph = ""
 for paragr_num in range(len(splitted_text)):
     for word in splitted_text[paragr_num]:
-        paragraph += word_transcriber.word_transcriber(word) + "\\Ts"
+        paragraph += transcr(word) + "\\Ts"
     file.write("\n")
     file.write(paragraph)
     file.write("\n")

@@ -84,6 +84,8 @@ def vowel_preparation(word):
             return "|" + word
         elif word in accent:
             return "^" + normalize[word]
+        elif word == "y":
+            return "|i"
 
     posit_vow = find_position(word)
 
