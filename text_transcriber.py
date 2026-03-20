@@ -70,7 +70,7 @@ splitted_text = words_splitter.splitter(text_to_transcribe)
 
 # ---- Trascription ----
 file = open(new_file,"w")
-file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\pagenumbering{gobble}\n\\begin{document}\n")
+file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\begin{document}\n")
 
 paragraph = ""
 for paragr_num in range(len(splitted_text)):

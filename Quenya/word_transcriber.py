@@ -11,12 +11,14 @@ from .special_cases_converter import cluster_converter
 from .special_cases_checker import checker as cluster_checker
 from .vowel_preparation import vowel_preparation
 from .h_s_r_converter import hsr_converter
-from .letters import letters_dict
+from .letters import letters_dict, numbers
 
 def word_transcriber(word):
     """
     Converts the original word to the tengwarscript commands
     """
+    if word[0] in numbers:
+        word = word[::-1]
     word = word.lower()
     transcribed = ""
 

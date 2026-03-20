@@ -75,7 +75,10 @@ cluster_dict = {
     "au" : "À"
 }
 
-# ------- LETTERS CONVERSION -------
+# ------- NUMBERS -------
+numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+
+# ------- CHARACTER CONVERSION -------
 letters_dict = {
     "t" : "\\Ttinco",
     "p" : "\\Tparma",
@@ -148,9 +151,19 @@ letters_dict = {
     ":" : "\\Tthreeverticaldots",
     ";" : "\\Tcolon",
     "." : "\\Tcolon\\Tcentereddot",
-    "!" : "\\Texclamation",
-    "?" : "\\Tquestion",
-    "(" : "\\Tparenthesis",
-    ")" : "\\Tparenthesis",
-    "-" : "\\Tcenteredtilde"
+    "!" : "\\raisebox{-0.5ex}{\\tengmag{1.1}\\Texclamation\\tengmag{1}}",
+    "?" : "\\tengmag{1.1}\\Tquestion\\tengmag{1}",
+    "(" : "\\raisebox{0.5ex}{\\tengmag{1.1}\\rotatebox[origin=c]{180}{\\Tparenthesis}\\tengmag{1}}",
+    ")" : "\\tengmag{1.1}\\Tparenthesis\\tengmag{1}",
+    "-" : "\\Tcenteredtilde",
+    "0" : "\\Tzero\\TTdecimal",
+    "1" : "\\Tone\\TTdecimal",
+    "2" : "\\Ttwo\\TTdecimal",
+    "3" : "\\Tthree\\TTdecimal",
+    "4" : "\\Tfour\\TTdecimal",
+    "5" : "\\Tfive\\TTdecimal",
+    "6" : "\\Tsix\\TTdecimal",
+    "7" : "\\Tseven\\TTdecimal",
+    "8" : "\\Teight\\TTdecimal",
+    "9" : "\\Tnine\\TTdecimal"
 }
