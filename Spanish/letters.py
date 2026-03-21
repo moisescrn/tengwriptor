@@ -74,6 +74,20 @@ cluster_dict = {
 
 # ------- NUMBERS -------
 numbers = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
+numbers_to_duodec = {
+    "0" : "Z",
+    "1" : "µ",
+    "2" : "ẗ",
+    "3" : "ĸ",
+    "4" : "ð",
+    "5" : "$",
+    "6" : "ſ",
+    "7" : "ŧ",
+    "8" : "ø",
+    "9" : "æ",
+    "§" : "§",
+    "þ" : "þ"
+}
 
 # ------- CHARACTER CONVERSION -------
 letters_dict = {
@@ -161,5 +175,17 @@ letters_dict = {
     "6" : "\\Tsix\\TTdecimal",
     "7" : "\\Tseven\\TTdecimal",
     "8" : "\\Teight\\TTdecimal",
-    "9" : "\\Tnine\\TTdecimal"
+    "9" : "\\Tnine\\TTdecimal",
+    "Z" : "\\Tzero\\TTduodecimal",
+    "µ" : "\\Tone\\TTduodecimal",
+    "ẗ" : "\\Ttwo\\TTduodecimal",
+    "ĸ" : "\\Tthree\\TTduodecimal",
+    "ð" : "\\Tfour\\TTduodecimal",
+    "$" : "\\Tfive\\TTduodecimal",
+    "ſ" : "\\Tsix\\TTduodecimal",
+    "ŧ" : "\\Tseven\\TTduodecimal",
+    "ø" : "\\Teight\\TTduodecimal",
+    "æ" : "\\Tnine\\TTduodecimal",
+    "§" : "\\Tten\\TTduodecimal",
+    "þ" : "\\Televen\\TTduodecimal"
 }

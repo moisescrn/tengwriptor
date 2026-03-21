@@ -20,14 +20,15 @@ transcriber_mappings = {
 #   -o ... name of output file
 #   -l ... language
 
-options = "hcf:o:l:"
-long_options = {"help", "compile", "font", "outputFile", "language"}
+options = "hcf:o:l:n:"
+long_options = {"help", "compile", "font", "outputFile", "language", "numberSystem"}
 
 # Chivatos, to see if an argument has been set
 comp_chiv = 0
 font_chiv = 0
 output_chiv = 0
 lang_chiv = 0
+num_chiv = 0
 
 try:
     arguments, values = getopt.getopt(sys.argv[1:], options, long_options)
@@ -46,6 +47,10 @@ try:
         elif currentArg in {"-l", "--language"}:
             transcr = transcriber_mappings[Argument_functions.set_language(currentVal)]
             lang_chiv += 1
+        elif currentArg in {"-n", "--numberSystem"}:
+            numsys = Argument_functions.set_numbersystem(currentVal)
+            num_chiv += 1
+            
 except getopt.GetoptError as err:
     print(str(err))
     print("\nPrinting usage instructions:")
@@ -64,6 +69,8 @@ if output_chiv == 0:
         new_file = text_to_transcribe + ".tex"
 if lang_chiv == 0:
     transcr = quenya_transcriber
+if num_chiv == 0:
+    numsys = "duodec" 
 
 # ---- Reading and splitting text ----
 splitted_text = words_splitter.splitter(text_to_transcribe)
@@ -75,7 +82,7 @@ file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\
 paragraph = ""
 for paragr_num in range(len(splitted_text)):
     for word in splitted_text[paragr_num]:
-        paragraph += transcr(word) + "\\Ts"
+        paragraph += transcr(word, numsys) + "\\Ts"
     file.write("\n")
     file.write(paragraph)
     file.write("\n")

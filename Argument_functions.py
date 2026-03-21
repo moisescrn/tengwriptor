@@ -17,6 +17,7 @@ def helpPanel():
     print("\t-f, --font \t\t The font can be chosen arbitrary. The default font is 'annatar', in case the given one is invalid, or none is given")
     print("\t-o, --outputFile \t Defines the name of the output file. The default name will be the name of the input file, interchanging the ending by '.tex'")
     print("\t-l, --language \t\t Set the language in which the text is written, so the transcription can be performed correctly. The default language is Quenya\n")
+    print("\t-n, --numberSystem \t\t Set the desired number systems to be used, between decimal and duodecimal. The default number system is duodecimal")
 
 def set_font(font):
     """
@@ -54,3 +55,15 @@ def set_language(language):
         return "quenya"
     else:
         return language
+
+def set_numbersystem(numsys):
+    """
+    Checks if the given number system is either decimal or duodecimal
+    """
+    systems = {"duodec", "dec"}
+
+    if numsys not in systems:
+        print("Invalid number system, the numbers will be given in duodecimal")
+        return "duodec"
+    else:
+        return numsys
