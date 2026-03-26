@@ -20,8 +20,8 @@ transcriber_mappings = {
 #   -o ... name of output file
 #   -l ... language
 
-options = "hcf:o:l:n:"
-long_options = {"help", "compile", "font", "outputFile", "language", "numberSystem"}
+options = "hcf:o:l:n:ds"
+long_options = {"help", "compile", "font", "outputFile", "language", "numberSystem", "darkStyle", "noSpace"}
 
 # Chivatos, to see if an argument has been set
 comp_chiv = 0
@@ -29,6 +29,8 @@ font_chiv = 0
 output_chiv = 0
 lang_chiv = 0
 num_chiv = 0
+dark_chiv = 0
+nospa_chiv = 0
 
 try:
     arguments, values = getopt.getopt(sys.argv[1:], options, long_options)
@@ -50,6 +52,10 @@ try:
         elif currentArg in {"-n", "--numberSystem"}:
             numsys = Argument_functions.set_numbersystem(currentVal)
             num_chiv += 1
+        elif currentArg in {"-d", "--darkStyle"}:
+            dark_chiv += 1
+        elif currentArg in {"-s", "--noSpace"}:
+            nospa_chiv += 1
             
 except getopt.GetoptError as err:
     print(str(err))
@@ -77,12 +83,21 @@ splitted_text = words_splitter.splitter(text_to_transcribe)
 
 # ---- Trascription ----
 file = open(new_file,"w")
-file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\begin{document}\n")
+if dark_chiv == 1:
+    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\usepackage{xcolor}\\color{white}\\pagecolor{black}\\begin{document}\n")
+else:
+    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\begin{document}\n")
 
 paragraph = ""
+# if no space desired, do not add Ts
+if nospa_chiv == 1:
+    space = ""
+else:
+    space = "\\Ts"
+
 for paragr_num in range(len(splitted_text)):
     for word in splitted_text[paragr_num]:
-        paragraph += transcr(word, numsys) + "\\Ts"
+        paragraph += transcr(word, numsys) + space
     file.write("\n")
     file.write(paragraph)
     file.write("\n")

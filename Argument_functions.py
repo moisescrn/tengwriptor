@@ -17,7 +17,8 @@ def helpPanel():
     print("\t-f, --font \t\t The font can be chosen arbitrary. The default font is 'annatar', in case the given one is invalid, or none is given")
     print("\t-o, --outputFile \t Defines the name of the output file. The default name will be the name of the input file, interchanging the ending by '.tex'")
     print("\t-l, --language \t\t Set the language in which the text is written, so the transcription can be performed correctly. The default language is Quenya\n")
-    print("\t-n, --numberSystem \t\t Set the desired number systems to be used, between decimal and duodecimal. The default number system is duodecimal")
+    print("\t-n, --numberSystem \t Set the desired number systems to be used, between decimal and duodecimal. The default number system is duodecimal")
+    print("\t-d, --darkStyle \t Sets dark style, background black and foreground white")
 
 def set_font(font):
     """

@@ -153,6 +153,7 @@ letters_dict = {
     "ó" : "\\TTdoublerightcurl",
     "ú" : "\\TTdoubleleftcurl",
     "|" : "\\Ttelco",
+    "/" : "\\raisebox{-0.7ex}{\\tengmag{1.3}\\rotatebox[origin=c]{-10}{\\Thalla}\\tengmag{1}}",
     "^" : "\\Taara",
     "~" : "\\Trighthook",
     "," : "\\Tcentereddot",
