@@ -19,9 +19,14 @@ transcriber_mappings = {
 #   -f ... font
 #   -o ... name of output file
 #   -l ... language
+#   -n ... set desired number system
+#   -d ... dark mode
+#   -s ... eliminate spaces
+#   -p ... set paper size (in cm): paperwidth, paperheight, margin
+#   -m ... center the text (put it in the middle)
 
-options = "hcf:o:l:n:ds"
-long_options = {"help", "compile", "font", "outputFile", "language", "numberSystem", "darkStyle", "noSpace"}
+options = "hcf:o:l:n:dsp:mt"
+long_options = {"help", "compile", "font", "outputFile", "language", "numberSystem", "darkStyle", "noSpace", "paperSize", "textMiddle", "transparent"}
 
 # Chivatos, to see if an argument has been set
 comp_chiv = 0
@@ -31,6 +36,8 @@ lang_chiv = 0
 num_chiv = 0
 dark_chiv = 0
 nospa_chiv = 0
+paper_chiv = 0
+center_chiv = 0
 
 try:
     arguments, values = getopt.getopt(sys.argv[1:], options, long_options)
@@ -56,7 +63,14 @@ try:
             dark_chiv += 1
         elif currentArg in {"-s", "--noSpace"}:
             nospa_chiv += 1
-            
+        elif currentArg in {"-p", "--paperSize"}:
+            paper_chiv += 1
+            v1, v2, v3 = currentVal.split(",")
+        elif currentArg in {"-m", "--textMiddle"}:
+            center_chiv += 1
+        elif currentArg in {"-t", "--transparent"}:
+            dark_chiv += 2
+
 except getopt.GetoptError as err:
     print(str(err))
     print("\nPrinting usage instructions:")
@@ -83,10 +97,27 @@ splitted_text = words_splitter.splitter(text_to_transcribe)
 
 # ---- Trascription ----
 file = open(new_file,"w")
-if dark_chiv == 1:
-    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\usepackage{xcolor}\\color{white}\\pagecolor{black}\\begin{document}\n")
+# Set paper size
+if paper_chiv == 1:
+    size = "\\usepackage[paperwidth="+v1+"cm,paperheight="+v2+"cm,margin="+v3+"cm]{geometry}\n"
 else:
-    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\begin{document}\n")
+    size = ""
+
+# Center the text
+if center_chiv == 1:
+    begin_centering = "\\begin{center}\n"
+    end_centering = "\n\\end{center}"
+else:
+    begin_centering = ""
+    end_centering = ""
+
+# Set dark mode
+if dark_chiv == 1:
+    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\usepackage{xcolor}\n\\color{white}\n\\pagecolor{black}\n" + size + "\\begin{document}\n" + begin_centering)
+elif dark_chiv == 2:
+    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\usepackage{xcolor}\n\\color{white}\n\\nopagecolor\n" + size + "\\begin{document}\n" + begin_centering)
+else:
+    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n" + size + "\\begin{document}\n" + begin_centering)
 
 paragraph = ""
 # if no space desired, do not add Ts
@@ -103,9 +134,11 @@ for paragr_num in range(len(splitted_text)):
     file.write("\n")
     paragraph = ""
 
-file.write("\n\\end{document}")
+file.write(end_centering + "\n\\end{document}")
 file.close()
 
 # If -c has been set, lets compile it
 if comp_chiv == 1:
-    os.system(f"pdflatex {new_file}")
+    os.system(f"/usr/local/texlive/2025/bin/x86_64-linux/pdflatex {new_file}")
+    # it is better to write the absolute path
+    # so will the tengwriptor work also inside other scripts
