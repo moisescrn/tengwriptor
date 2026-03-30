@@ -12,13 +12,16 @@ def helpPanel():
     print("\tThis script is responsible to apply the transcription to tengwar, changing the mode as needed depending on the language. The output is a .tex-file that has to be compiled to get the transcription\n")
     print("OPTIONS")
     print("\tThe script accepts the following options:\n")
-    print("\t-h, --help \t\t Prints this information panel")
-    print("\t-c, --compile \t\t The output .tex-file is compiled automatically")
-    print("\t-f, --font \t\t The font can be chosen arbitrary. The default font is 'annatar', in case the given one is invalid, or none is given")
-    print("\t-o, --outputFile \t Defines the name of the output file. The default name will be the name of the input file, interchanging the ending by '.tex'")
+    print("\t-h, --help \t\t Prints this information panel\n")
+    print("\t-c, --compile \t\t The output .tex-file is compiled automatically\n")
+    print("\t-f, --font \t\t The font can be chosen arbitrary. The default font is 'annatar', in case the given one is invalid, or none is given\n")
+    print("\t-o, --outputFile \t Defines the name of the output file. The default name will be the name of the input file, interchanging the ending by '.tex'\n")
     print("\t-l, --language \t\t Set the language in which the text is written, so the transcription can be performed correctly. The default language is Quenya\n")
-    print("\t-n, --numberSystem \t Set the desired number systems to be used, between decimal and duodecimal. The default number system is duodecimal")
-    print("\t-d, --darkStyle \t Sets dark style, background black and foreground white")
+    print("\t-n, --numberSystem \t Set the desired number systems to be used, between decimal and duodecimal. The default number system is duodecimal\n")
+    print("\t-d, --darkStyle \t Sets dark style, background black and foreground white\n")
+    print("\t-s, --noSpace \t\t Quites the spaces over the whole text\n")
+    print("\t-p, --paperSize \t Sets paper size (in cm). Three arguments must be given separated only by a comma (,): paperwidth, paperheight, margin\n")
+    print("\t-m, --textMiddle \t Centers the whole text\n")
 
 def set_font(font):
     """

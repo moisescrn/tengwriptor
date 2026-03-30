@@ -25,8 +25,8 @@ transcriber_mappings = {
 #   -p ... set paper size (in cm): paperwidth, paperheight, margin
 #   -m ... center the text (put it in the middle)
 
-options = "hcf:o:l:n:dsp:mt"
-long_options = {"help", "compile", "font", "outputFile", "language", "numberSystem", "darkStyle", "noSpace", "paperSize", "textMiddle", "transparent"}
+options = "hcf:o:l:n:dsp:m"
+long_options = {"help", "compile", "font", "outputFile", "language", "numberSystem", "darkStyle", "noSpace", "paperSize", "textMiddle"}
 
 # Chivatos, to see if an argument has been set
 comp_chiv = 0
@@ -68,8 +68,6 @@ try:
             v1, v2, v3 = currentVal.split(",")
         elif currentArg in {"-m", "--textMiddle"}:
             center_chiv += 1
-        elif currentArg in {"-t", "--transparent"}:
-            dark_chiv += 2
 
 except getopt.GetoptError as err:
     print(str(err))
@@ -114,8 +112,6 @@ else:
 # Set dark mode
 if dark_chiv == 1:
     file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\usepackage{xcolor}\n\\color{white}\n\\pagecolor{black}\n" + size + "\\begin{document}\n" + begin_centering)
-elif dark_chiv == 2:
-    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\usepackage{xcolor}\n\\color{white}\n\\nopagecolor\n" + size + "\\begin{document}\n" + begin_centering)
 else:
     file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n" + size + "\\begin{document}\n" + begin_centering)
 
