@@ -5,12 +5,14 @@
 import getopt, sys, os
 from Quenya.word_transcriber import word_transcriber as quenya_transcriber
 from Spanish.word_transcriber import word_transcriber as spanish_transcriber
+from Beleriand.word_transcriber import word_transcriber as beleriand_transcriber
 from Splitter import words_splitter
 import Argument_functions
 
 transcriber_mappings = {
     "quenya" : quenya_transcriber,
-    "spanish" : spanish_transcriber
+    "spanish" : spanish_transcriber,
+    "beleriand" : beleriand_transcriber
 }
 
 # ---- Setting arguments ----

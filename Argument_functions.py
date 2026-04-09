@@ -48,11 +48,9 @@ def set_outputfile(file_name):
 
 def set_language(language):
     """
-    Checks and sets the language.
-    For the moment there is only one language, so lets just print the name
-    In the future this will be changed
+    Checks and sets the language. If an invalid language is set, quenya will be used
     """
-    languages = {"quenya", "sindarin", "spanish", "english"}
+    languages = {"quenya", "beleriand", "spanish", "english"}
 
     if language not in languages:
         print("Invalid language, quenya will be used")

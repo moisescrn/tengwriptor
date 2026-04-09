@@ -9,8 +9,7 @@
 
 from .special_cases_converter import cluster_converter
 from .special_cases_checker import checker as cluster_checker
-from .vowel_preparation import vowel_preparation
-from .h_s_r_converter import hsr_converter
+from .iwng_converter import iwng_converter
 from .letters import letters_dict, numbers, numbers_to_duodec
 from .base10_to_base12 import base12_converter
 
@@ -40,11 +39,7 @@ def word_transcriber(word, num="duodec"):
     if cluster_checker(word) == True:
         word = cluster_converter(word)
 
-#    word = vowel_preparation(word)
-
-    word = hsr_converter(word)
-
-    word = vowel_preparation(word)
+    word = iwng_converter(word)
 
     for char in word:
         transcribed += letters_dict[char]
