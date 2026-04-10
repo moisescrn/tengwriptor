@@ -16,9 +16,10 @@ On the net there are a lot of guides and websites to write with Tengwar, but wha
 <u>Accepted languages:</u> 
 - Quenya
 - Spanish
+- Sindarin, Beleriand mode
 
 *In the future*
-- Sindarin (Beleriand and full mode)
+- Sindarin (general mode)
 - English
 
 <u>Accepted fonts:</u> 

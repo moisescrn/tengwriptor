@@ -5,6 +5,7 @@
 import getopt, sys, os
 from Quenya.word_transcriber import word_transcriber as quenya_transcriber
 from Spanish.word_transcriber import word_transcriber as spanish_transcriber
+from Spanish.letters import no_previous_space, no_post_space
 from Beleriand.word_transcriber import word_transcriber as beleriand_transcriber
 from Splitter import words_splitter
 import Argument_functions
@@ -115,7 +116,7 @@ else:
 if dark_chiv == 1:
     file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n\\usepackage{xcolor}\n\\color{white}\n\\pagecolor{black}\n" + size + "\\begin{document}\n" + begin_centering)
 else:
-    file.write("\\documentclass{article}\n\\usepackage[" + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n" + size + "\\begin{document}\n" + begin_centering)
+    file.write("\\documentclass{article}\n\\usepackage[gothika," + font + "]{tengwarscript}\n\\pdfmapfile{=tengwarscript.map}\n\\usepackage{graphicx}\n\\pagenumbering{gobble}\n" + size + "\\begin{document}\n" + begin_centering)
 
 paragraph = ""
 # if no space desired, do not add Ts
@@ -124,9 +125,31 @@ if nospa_chiv == 1:
 else:
     space = "\\Ts"
 
+# define a variable that becomes true if the paragraph is a title
+title = False
+
 for paragr_num in range(len(splitted_text)):
-    for word in splitted_text[paragr_num]:
-        paragraph += transcr(word, numsys) + space
+    # Check if a paragraph is a title
+    if words_splitter.title_setter(splitted_text[paragr_num]) != None:
+        magnitude  = words_splitter.title_setter(splitted_text[paragr_num])
+        paragraph += "\\tengmag{" + str(magnitude) + "}\\tengwargothika"
+        title = True
+        splitted_text[paragr_num].remove("#")
+        
+    # Make this distinction for the punctuation signs
+    for word_num in range(len(splitted_text[paragr_num])):
+        if word_num < len(splitted_text[paragr_num])-1 and splitted_text[paragr_num][word_num+1] in no_previous_space:
+            paragraph += transcr(splitted_text[paragr_num][word_num], numsys)
+        elif splitted_text[paragr_num][word_num] in no_post_space:
+            paragraph += transcr(splitted_text[paragr_num][word_num], numsys)
+        elif splitted_text[paragr_num][word_num] == "." and word_num == len(splitted_text[paragr_num])-1:
+            paragraph += "\\Tcolon\\Tcenteredlongtilde"
+        else:
+            paragraph += transcr(splitted_text[paragr_num][word_num], numsys) + space
+
+    # if the paragraph is a title, we want to go back to the original font and size
+    if title == True:
+        paragraph += "\\tengwar" + font + "\\tengmag{1}"
     file.write("\n")
     file.write(paragraph)
     file.write("\n")

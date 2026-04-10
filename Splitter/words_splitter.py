@@ -25,3 +25,24 @@ def splitter(file):
         paragraph_lists.append(tokens)
 
     return paragraph_lists
+
+def title_setter(paragr):
+    """
+    Takes the list paragr and checks if it is a title (beginning with #),
+    if yes a bigger size will be set
+    """
+    if paragr[0] != "#":
+        return None
+
+    cnt = paragr.count("#")
+    
+    if cnt == 1:
+        magnitude = 1.25
+    elif cnt == 2:
+        magnitude = 1.15
+    elif cnt == 3:
+        magnitude = 1.05
+    else:
+        magnitude = 0.95
+
+    return magnitude
