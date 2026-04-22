@@ -134,8 +134,10 @@ for paragr_num in range(len(splitted_text)):
         magnitude  = words_splitter.title_setter(splitted_text[paragr_num])
         paragraph += "\\tengmag{" + str(magnitude) + "}\\tengwargothika"
         title = True
-        splitted_text[paragr_num].remove("#")
-        
+        while splitted_text[paragr_num][0] == "#":
+            splitted_text[paragr_num].remove("#")
+    else:
+        title = False
     # Make this distinction for the punctuation signs
     for word_num in range(len(splitted_text[paragr_num])):
         if word_num < len(splitted_text[paragr_num])-1 and splitted_text[paragr_num][word_num+1] in no_previous_space:
