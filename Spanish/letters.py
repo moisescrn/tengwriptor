@@ -191,7 +191,3 @@ letters_dict = {
     "§" : "\\Tten\\TTduodecimal",
     "þ" : "\\Televen\\TTduodecimal"
 }
-
-
-no_previous_space = {",", ".", ";", ":", "!", "?", ")", "\""}
-no_post_space = {"¡", "¿", "(", "\""}

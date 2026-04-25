@@ -5,7 +5,7 @@
 import getopt, sys, os
 from Quenya.word_transcriber import word_transcriber as quenya_transcriber
 from Spanish.word_transcriber import word_transcriber as spanish_transcriber
-from Spanish.letters import no_previous_space, no_post_space
+from Splitter.punctuation import no_previous_space, no_post_space
 from Beleriand.word_transcriber import word_transcriber as beleriand_transcriber
 from Splitter import words_splitter
 import Argument_functions
