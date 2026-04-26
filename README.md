@@ -10,28 +10,59 @@ On the net there are a lot of guides and websites to write with Tengwar, but wha
 
 # Usage
 <u>Input</u>: *.txt*-file
+```
+python3 text_transcriber.py [OPTIONS] file
+```
 
-<u>Output</u>: *.tex*-file. There is an option to compile it to a *pdf* automatically
+<u>Output</u>: *.tex*-file with the transcribed text
+
+<u>Options:</u>
+- `-h`	show help menu
+-  `-c`	autocompile
+- `-f`	set font
+- `-o`	give name to the output file (default name is that of input, interchanging ending by `.tex`)
+- `-l`	chose language
+- `-n`	chose number system (either decimal or duodecimal)
+- `-d`	set dark style (black page with white letters)
+- `-s`	quit spaces (for some scripts or title may be useful)
+- `-p`	set paper size (in cm): paperwidth, paperheight, margin
+- `-m`	center the whole text
 
 <u>Accepted languages:</u> 
 - Quenya
+
 - Spanish
+
 - Sindarin, Beleriand mode
 
+  (default: Quenya)
+
 *In the future*
+
 - Sindarin (general mode)
 - English
 
 <u>Accepted fonts:</u> 
+
 - Annatar
+
 - Formal
+
 - Noldor
+
 - Quenya
+
 - Sindarin
+
 - Teleri
+
 - Parmaite
+
 - Elfica
+
 - Gothika
+
+  (default: annatar)
 
 Variation of this fonts (like annataritalic or quenyacapI) are also accepted.
 The fonts will have to be installed manually as explained in the *tengwarscript*-package.
