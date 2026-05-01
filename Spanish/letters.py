@@ -168,6 +168,7 @@ letters_dict = {
     ")" : "\\tengmag{1}\\Tparenthesis\\tengmag{1}",
     "-" : "\\Tcenteredtilde",
     "\"" : "\\Tromandblquoteright",
+    "[" : "\\Tromandblquoteleft",
     "0" : "\\Tzero\\TTdecimal",
     "1" : "\\Tone\\TTdecimal",
     "2" : "\\Ttwo\\TTdecimal",

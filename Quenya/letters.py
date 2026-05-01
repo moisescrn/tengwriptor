@@ -170,6 +170,8 @@ letters_dict = {
     "(" : "\\raisebox{0.5ex}{\\tengmag{1.1}\\rotatebox[origin=c]{180}{\\Tparenthesis}\\tengmag{1}}",
     ")" : "\\tengmag{1.1}\\Tparenthesis\\tengmag{1}",
     "-" : "\\Tcenteredtilde",
+    "\"" : "\\Tromandblquoteright",
+    "[" : "\\Tromandblquoteleft",
     "0" : "\\Tzero\\TTdecimal",
     "1" : "\\Tone\\TTdecimal",
     "2" : "\\Ttwo\\TTdecimal",

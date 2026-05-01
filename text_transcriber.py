@@ -138,8 +138,39 @@ for paragr_num in range(len(splitted_text)):
             splitted_text[paragr_num].remove("#")
     else:
         title = False
+    
+    quot_counter = 0
+    # Treat the quotation marks before the main loop to avoid any errors
+    for word_num in range(len(splitted_text[paragr_num])):
+        if splitted_text[paragr_num][word_num] == "\"":
+            if quot_counter % 2 == 0:
+                splitted_text[paragr_num][word_num] = "["
+            quot_counter += 1
+
     # Make this distinction for the punctuation signs
     for word_num in range(len(splitted_text[paragr_num])):
+        # Handle with the quotation marks
+#        if splitted_text[paragr_num][word_num] == "\"" and quot_counter % 2 == 1:
+            # Correct the punctuation sets
+#            no_previous_space = {",", ".", ";", ":", "!", "?", ")"}
+#            no_post_space = {"¡", "¿", "(", "\""}
+            # prepare for second quotation mark
+#            quot_counter += 1
+#        elif splitted_text[paragr_num][word_num] == "\"" and quot_counter % 2 == 0:
+            # Correct the punctuation sets
+#            no_previous_space = {",", ".", ";", ":", "!", "?", ")", "\""}
+#            no_post_space = {"¡", "¿", "("}
+            # prepare for second quotation mark
+#            quot_counter += 1
+
+
+
+#        if splitted_text[paragr_num][word_num] == "\"" and quot_counter % 2 == 1:
+#            splitted_text[paragr_num][word_num] = "["
+#            quot_counter += 1
+
+
+
         if word_num < len(splitted_text[paragr_num])-1 and splitted_text[paragr_num][word_num+1] in no_previous_space:
             paragraph += transcr(splitted_text[paragr_num][word_num], numsys)
         elif splitted_text[paragr_num][word_num] in no_post_space:
